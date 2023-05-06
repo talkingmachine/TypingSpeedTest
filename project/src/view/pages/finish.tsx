@@ -1,10 +1,21 @@
+import { useAppSelector } from "../../hooks/typedWrappers";
+import { useNavigate } from "react-router-dom";
+
 const Finish = () => {
+
+  const navigate = useNavigate();
+  const userName = useAppSelector((state) => state.name);
+
+  const restartHandler = () => {
+    navigate('/');
+  }
+
   return (
     <div className="container-fluid">
       <section className="finish-screen">
         <div className="row">
           <div className="col-12">
-            <h1 className="finish-screen__title">Good job Name! Your results:</h1>
+            <h1 className="finish-screen__title">Good job {userName}! Your results:</h1>
           </div>
         </div>
         <div className="row">
@@ -37,7 +48,7 @@ const Finish = () => {
         </div>
         <div className="row">
           <div className="col-12">
-            <button className="finish-screen__button-restart">Restart</button>
+            <button onClick={restartHandler} className="finish-screen__button-restart">Restart</button>
           </div>
         </div>
       </section>

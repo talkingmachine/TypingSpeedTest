@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { Finish } from './view/pages/finish';
-//import { TypingTest } from './view/pages/typingTest';
-//import { Start } from './view/pages/start';
-//import { GetReady } from './view/pages/getReady';
+import { App } from './view/app';
+import { store } from './store';
+import { Provider } from 'react-redux';
+
 
 
 const root = ReactDOM.createRoot(
@@ -12,6 +12,8 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <Finish/>
+    <Provider store={store}>
+      <App/>
+    </Provider>
   </React.StrictMode>
 );
