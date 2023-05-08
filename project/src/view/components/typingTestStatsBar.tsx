@@ -33,21 +33,17 @@ const TypingTestStatsBar = ({charsInARow}:TypingTestStatsBarProps) => {
     
     return () => clearInterval(timer);
   }, [currentTime, navigate]);
-  
-  // useEffect(() => () => {
-  //   dispatch();
-  // }, [dispatch]);
 
   return (
-    <div className="row typing-test__stats-bar">
-      <div className="col-4" >
-        remaining time {secondsToTimer(currentTime)}
+    <div className="row typing-test__stats-row">
+      <div className="col-4 typing-test__stats-col" >
+        <span>remaining time<br/>{secondsToTimer(currentTime)}</span>
       </div>
-      <div className="col-4" >
+      <div className="col-4 typing-test__stats-col" >
         {getAccuracy(correctAnswers, mistakes)}%
       </div>
-      <div className="col-4" >
-        in a row {getCharsInARow()}
+      <div className="col-4 typing-test__stats-col" >
+      <span>in a row<br/>{getCharsInARow()}</span>
       </div>
     </div>
   );

@@ -27,12 +27,12 @@ const Start = () => {
     <div className="container-fluid">
       <section className="start-screen">
         <div className="row">
-          <div className="col-12">
-            <h1 className="start-screen__title">Typing Speed Test</h1>
+          <div className="col">
+            <h1 className="start-screen__title text-center">Typing Speed Test</h1>
           </div>
         </div>
-        <div className="row">
-          <div className="col-12">
+        <div className="row start-screen__input-row">
+          <div className="col">
             <form onSubmit={nameInputHandler} className="form-floating start-screen__form">
             <div className="input-group">
               <div className="form-floating">

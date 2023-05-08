@@ -1,3 +1,36 @@
+section {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
+.start-screen__input-row {
+  margin-top: 100px;
+}
+
+.get-ready-screen__button-row {
+  margin: 20px 0;
+}
+
+.get-ready-screen__ready-button {
+  height: 100px;
+  width: 100px;
+}
+
+.typing-test-screen {
+  position: relative;
+}
+.typing-test-screen .typing-test__stats-row {
+  width: 100%;
+  position: absolute;
+  top: 15px;
+}
+.typing-test-screen .typing-test__stats-row .typing-test__stats-col {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
 
 /*# sourceMappingURL=index.css.map */

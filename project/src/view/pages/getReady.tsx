@@ -29,7 +29,7 @@ const GetReady = () => {
             <h1 className="get-ready-screen__title">Ready?</h1>
           </div>
         </div>
-        <div className="row">
+        <div className="row get-ready-screen__button-row">
           <div className="col-12">
             <button onClick={readyButtonHandler} className="get-ready-screen__ready-button">Go</button>
           </div>

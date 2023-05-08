@@ -1,6 +1,5 @@
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { visualCharSelection } from "../../utils/visualCharSelection";
-import { firstNonSpace } from "../../utils/firstNonSpace.";
 import { getText } from "../../api/getText";
 import { useAppDispatch, useAppSelector } from "../../hooks/typedWrappers";
 import { incCorrectAnswers, incMistakes, setFutureSentence, setFutureToCurrentSentence } from "../../store/actions";
@@ -37,9 +36,9 @@ const TypingTestSentence = ({setCharsInARow}: TypingTestSentenceProps) => {
         if (selectedChar === sentence.length - 1) {
           loadNewSentence();
         } else {
-          setSelectedChar(firstNonSpace(sentence, selectedChar + 1));
+          setSelectedChar((prev) => prev + 1);
         }
-      } else if (/[A-Za-z0-9,.()]+/.test(e.key) && e.key.length === 1) {
+      } else if (/[A-Za-z0-9,.() ]+/.test(e.key) && e.key.length === 1) {
         dispatch(incMistakes());
         setCharsInARow(0);
       }
