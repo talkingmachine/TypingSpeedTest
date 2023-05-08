@@ -1,20 +1,22 @@
-import { useState } from "react";
-import { secondsToTimer } from "../../utils/secondsToTimer";
-import { DEFAULT_PARAMS } from "../../consts";
+import { useEffect, } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAppDispatch } from "../../hooks/typedWrappers";
+import { setFutureSentence, setFutureToCurrentSentence } from "../../store/actions";
+import { getText } from "../../api/getText";
+import { GetReadyChangeTimer } from "../components/getReadyChangeTimer";
 
 const GetReady = () => {
 
   const navigate = useNavigate();
-  const [seconds, setSeconds] = useState(60);
-
-  const increaseSecondsHandler = () => {
-    setSeconds((prev) => prev + DEFAULT_PARAMS.timeStep)
-  }
-  const decreaseSecondsHandler = () => {
-    setSeconds((prev) => prev - DEFAULT_PARAMS.timeStep)
-  }
-
+  const dispatch = useAppDispatch();
+  
+  useEffect(() => {
+    getText().then(text => { // first sentence without loading on the next screen
+    dispatch(setFutureSentence(text));
+    dispatch(setFutureToCurrentSentence());
+  });
+  }, [dispatch]);
+  
   const readyButtonHandler = () => {
     navigate('/typing-test')
   }
@@ -32,17 +34,7 @@ const GetReady = () => {
             <button onClick={readyButtonHandler} className="get-ready-screen__ready-button">Go</button>
           </div>
         </div>
-        <div className="row">
-          <div className="col">
-            <button onClick={decreaseSecondsHandler} className="get-ready-screen__change-time get-ready-screen__decrease-time">less</button>
-          </div>
-          <div className="col">
-            <div className="get-ready-screen__timer">{secondsToTimer(seconds)}</div>
-          </div>
-          <div className="col">
-            <button onClick={increaseSecondsHandler} className="get-ready-screen__change-time get-ready-screen__increase-time">more</button>
-          </div>
-        </div>
+        <GetReadyChangeTimer/>
       </section>
     </div>
   );

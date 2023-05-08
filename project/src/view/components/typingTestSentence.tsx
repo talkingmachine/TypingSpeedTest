@@ -1,17 +1,59 @@
-import { useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { visualCharSelection } from "../../utils/visualCharSelection";
+import { firstNonSpace } from "../../utils/firstNonSpace.";
+import { getText } from "../../api/getText";
+import { useAppDispatch, useAppSelector } from "../../hooks/typedWrappers";
+import { incCorrectAnswers, incMistakes, setFutureSentence, setFutureToCurrentSentence } from "../../store/actions";
 
-const TypingTestSentence = () => {
-  const mockAPIData = 'Perferendis aliquid cumque, laudantium id maiores aspernatur. Expedita distinctio iste laudantium, explicabo eius fuga voluptate dolore animi voluptates, obcaecati, repellendus eligendi soluta!';
-  // DELETE NEXT LINE
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [selectedChar, setSelectedChar] = useState(4);
+type TypingTestSentenceProps = {
+  setCharsInARow: Dispatch<SetStateAction<number>>;
+}
+const TypingTestSentence = ({setCharsInARow}: TypingTestSentenceProps) => {
 
+  const dispatch = useAppDispatch();
+  const sentence = useAppSelector((state) => state.sentences.current);
+  const [selectedChar, setSelectedChar] = useState(0);
+  
+  useEffect(() => {
+    getText().then(text => {
+      dispatch(setFutureSentence(text));
+    });
+
+  }, [dispatch]);
+
+  useEffect(() => {
+    const loadNewSentence = () => {
+      dispatch(setFutureToCurrentSentence());
+      setSelectedChar(0);
+      getText().then(text => {
+        dispatch(setFutureSentence(text));
+      });
+    }
+
+    const keyboardListener = (e: KeyboardEvent) => {
+      if (e.key === sentence[selectedChar]) {
+        dispatch(incCorrectAnswers());
+        setCharsInARow((prev) => prev + 1);
+        if (selectedChar === sentence.length - 1) {
+          loadNewSentence();
+        } else {
+          setSelectedChar(firstNonSpace(sentence, selectedChar + 1));
+        }
+      } else if (/[A-Za-z0-9,.()]+/.test(e.key) && e.key.length === 1) {
+        dispatch(incMistakes());
+        setCharsInARow(0);
+      }
+    }
+
+    document.addEventListener('keydown', keyboardListener);
+
+    return () => document.removeEventListener('keydown', keyboardListener);
+  }, [dispatch, selectedChar, sentence, setCharsInARow]);
 
   return (
     <div className="row typing-test__sentence">
       <div className="col-12">
-        <div className="typing-test__text">{visualCharSelection(mockAPIData, selectedChar)}</div>
+        <div className="typing-test__text">{visualCharSelection(sentence, selectedChar)}</div>
       </div>
     </div>
   );

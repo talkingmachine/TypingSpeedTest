@@ -15,7 +15,6 @@ const Start = () => {
     e.preventDefault();
     if (inputNameRef.current) {
       if (isNameValid(inputNameRef.current.value)) {
-        console.log(inputNameRef.current.value);
         dispatch(setName(inputNameRef.current.value));
         navigate('/get-ready');
       }

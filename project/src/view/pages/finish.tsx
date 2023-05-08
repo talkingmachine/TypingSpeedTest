@@ -1,8 +1,13 @@
 import { useAppSelector } from "../../hooks/typedWrappers";
 import { useNavigate } from "react-router-dom";
+import { getAccuracy, getTypingSpeed } from "../../utils/getStatistics";
 
 const Finish = () => {
 
+  const maxCharsInARow = useAppSelector((state) => state.maxInARow);
+  const correctAnswers = useAppSelector((state) => state.correctAnswers);
+  const mistakes = useAppSelector((state) => state.mistakes);
+  const timerSeconds = useAppSelector((state) => state.timerSeconds);
   const navigate = useNavigate();
   const userName = useAppSelector((state) => state.name);
 
@@ -22,28 +27,21 @@ const Finish = () => {
           <div className="col-12">
             <ul className="finish-screen__statistics">
               <li className="finish-screen-statistics-item">
-                correct: 91%;
+                correct: {getAccuracy(correctAnswers, mistakes)}%;
               </li>
               <li className="finish-screen-statistics-item">
-                longest streak: 24 characters in a row
+                longest streak: {maxCharsInARow} characters in a row
               </li>
               <li className="finish-screen-statistics-item">
-                total characters: 2305
+                total characters: {correctAnswers}
               </li>
               <li className="finish-screen-statistics-item">
-                mistakes: 11
+                mistakes: {mistakes}
               </li>
               <li className="finish-screen-statistics-item">
-                typing speed: 290 ch/m
+                typing speed: {getTypingSpeed(timerSeconds, correctAnswers)} ch/m
               </li>
             </ul>
-          </div>
-        </div>
-        <div className="row">
-          <div className="col-12">
-            <span className="finish-screen__award">
-              award: Platinum
-            </span>
           </div>
         </div>
         <div className="row">
