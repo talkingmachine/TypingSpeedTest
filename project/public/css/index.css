@@ -130,4 +130,19 @@ section {
   stroke: red;
 }
 
+@media (max-width: 500px) {
+  .typing-test-screen .typing-test__stats-row {
+    font-size: 20px;
+  }
+  .typing-test-screen .typing-test__stats-row .typing-test__stats-accuracy {
+    font-size: 23px;
+  }
+  .finish-screen .finish-screen__title {
+    text-align: center;
+  }
+  .finish-screen .finish-screen__statistics .finish-screen-statistics-item {
+    font-size: 17px;
+  }
+}
+
 /*# sourceMappingURL=index.css.map */

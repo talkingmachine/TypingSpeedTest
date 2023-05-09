@@ -119,3 +119,26 @@ section{
     @include resetButton;
   }
 }
+
+@media (max-width: 500px) {
+  //typing-test
+.typing-test-screen{
+  .typing-test__stats-row{
+    font-size: 20px;
+    .typing-test__stats-accuracy{
+      font-size: 23px;
+    }
+  }
+}
+  //finish
+  .finish-screen{
+    .finish-screen__title{
+      text-align: center;
+    }
+    .finish-screen__statistics{
+      .finish-screen-statistics-item{
+        font-size: 17px;
+      }
+    }
+  }
+}
