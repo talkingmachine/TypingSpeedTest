@@ -30,7 +30,7 @@ const TypingTestSentence = ({setCharsInARow}: TypingTestSentenceProps) => {
     }
 
     const keyboardListener = (e: KeyboardEvent) => {
-      if (e.key === sentence[selectedChar]) {
+      if ((e.key).toLowerCase() === (sentence[selectedChar]).toLowerCase()) {
         dispatch(incCorrectAnswers());
         setCharsInARow((prev) => prev + 1);
         if (selectedChar === sentence.length - 1) {

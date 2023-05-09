@@ -1,4 +1,18 @@
-
+@mixin resetButton{
+  all: unset;
+  cursor: pointer;
+  svg path{
+    transition: all .2s ease-out;
+  }
+  &:hover{
+    svg path{
+      stroke: red;
+    }
+  }
+}
+.container-fluid{
+  background: #FFFFF0;
+}
 section{
   height: 100vh;
   display: flex;
@@ -8,16 +22,59 @@ section{
 }
 
 //start
-.start-screen__input-row{
-  margin-top: 100px;
+.start-screen{
+  .start-screen__input-row{
+    margin-top: 100px;
+    ::after{
+      background: transparent !important;
+    }
+    .start-screen__input-name{
+      border-radius: 0;
+      width: 230px;
+      margin-top: 5px;
+      background: transparent;
+      border: 1px solid transparent;
+      &:focus{
+        box-shadow: none;
+        border-bottom: 1px solid black;
+      }
+    }
+    .start-screen__submit-button{
+      @include resetButton;
+      width: 30px;
+      &:hover{
+        background: transparent;
+      }
+    }
+  }
 }
 //get-ready
-.get-ready-screen__button-row{
-  margin: 20px 0;
-}
-.get-ready-screen__ready-button{
-  height: 100px;
-  width: 100px;
+.get-ready-screen{
+  .get-ready-screen__button-row{
+    margin: 50px 0;
+    .get-ready-screen__ready-button{
+      @include resetButton;
+      height: 100px;
+      width: 100px;
+    }
+  }
+  .get-ready-screen__change-timer{
+    width: 350px;
+    .col{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      button{
+        @include resetButton;
+      }
+    }
+    .get-ready-screen__dec-time{
+      justify-content: end;
+    }
+    .get-ready-screen__inc-time{
+      justify-content: start;
+    }
+  }
 }
 //typing-test
 .typing-test-screen{
@@ -26,12 +83,39 @@ section{
     width: 100%;
     position: absolute;
     top: 15px;
-    .typing-test__stats-col{
+    font-size: 23px;
+    .col-4{
       display: flex;
       justify-content: center;
       text-align: center;
     }
+    .typing-test__stats-accuracy{
+      font-size: 30px;
+    }
   }
-
+  .typing-test__sentence{
+    max-width: 70vw;
+    font-size: 20px;
+    .--typed-text{
+      color: rgba(128, 128, 128, 0.6);
+    }
+    .--selected-char{
+      font-size: 22px;
+      font-weight: bold;
+      color: red;
+    }
+  }
 }
 //finish
+.finish-screen{
+  .finish-screen__statistics{
+    margin: 40px 0 100px;
+    .finish-screen-statistics-item{
+      display: block;
+      font-size: 20px;
+    }
+  }
+  .finish-screen__button-restart{
+    @include resetButton;
+  }
+}

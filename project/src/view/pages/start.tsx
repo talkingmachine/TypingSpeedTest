@@ -36,10 +36,12 @@ const Start = () => {
             <form onSubmit={nameInputHandler} className="form-floating start-screen__form">
             <div className="input-group">
               <div className="form-floating">
-                <input type="text" className="form-control start-screen__input-name" id="start-screen__input-name" placeholder="Username" ref={inputNameRef}/>
-                <label htmlFor="start-screen__input-name">Username</label>
+                <input type="text" className="form-control start-screen__input-name" id="start-screen__input-name" placeholder="Username" ref={inputNameRef} autoFocus/>
+                <label htmlFor="start-screen__input-name">Type your name</label>
               </div>
-              <button onClick={nameInputHandler} className="btn btn-outline-secondary start-screen__submit-button" type="button" >Button</button>
+              <button onClick={nameInputHandler} className="btn btn-outline-secondary start-screen__submit-button" type="button">
+                <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13.1667 6L19 12M19 12L13.1667 18M19 12L5 12" stroke="black" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" /></svg>
+              </button>
             </div>
             </form>  
           </div>

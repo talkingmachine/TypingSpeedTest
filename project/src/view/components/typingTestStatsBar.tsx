@@ -36,14 +36,14 @@ const TypingTestStatsBar = ({charsInARow}:TypingTestStatsBarProps) => {
 
   return (
     <div className="row typing-test__stats-row">
-      <div className="col-4 typing-test__stats-col" >
-        <span>remaining time<br/>{secondsToTimer(currentTime)}</span>
+      <div className="col-4" >
+        <span>remaining time<br/><b>{secondsToTimer(currentTime)}</b></span>
       </div>
-      <div className="col-4 typing-test__stats-col" >
-        {getAccuracy(correctAnswers, mistakes)}%
+      <div className="col-4 typing-test__stats-accuracy" >
+        <b>{getAccuracy(correctAnswers, mistakes)}%</b>
       </div>
-      <div className="col-4 typing-test__stats-col" >
-      <span>in a row<br/>{getCharsInARow()}</span>
+      <div className="col-4" >
+      <span>in a row<br/><b>{getCharsInARow()}</b></span>
       </div>
     </div>
   );

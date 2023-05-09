@@ -1,3 +1,7 @@
+.container-fluid {
+  background: #FFFFF0;
+}
+
 section {
   height: 100vh;
   display: flex;
@@ -6,17 +10,76 @@ section {
   align-items: center;
 }
 
-.start-screen__input-row {
+.start-screen .start-screen__input-row {
   margin-top: 100px;
 }
-
-.get-ready-screen__button-row {
-  margin: 20px 0;
+.start-screen .start-screen__input-row ::after {
+  background: transparent !important;
+}
+.start-screen .start-screen__input-row .start-screen__input-name {
+  border-radius: 0;
+  width: 230px;
+  margin-top: 5px;
+  background: transparent;
+  border: 1px solid transparent;
+}
+.start-screen .start-screen__input-row .start-screen__input-name:focus {
+  box-shadow: none;
+  border-bottom: 1px solid black;
+}
+.start-screen .start-screen__input-row .start-screen__submit-button {
+  all: unset;
+  cursor: pointer;
+  width: 30px;
+}
+.start-screen .start-screen__input-row .start-screen__submit-button svg path {
+  transition: all 0.2s ease-out;
+}
+.start-screen .start-screen__input-row .start-screen__submit-button:hover svg path {
+  stroke: red;
+}
+.start-screen .start-screen__input-row .start-screen__submit-button:hover {
+  background: transparent;
 }
 
-.get-ready-screen__ready-button {
+.get-ready-screen .get-ready-screen__button-row {
+  margin: 50px 0;
+}
+.get-ready-screen .get-ready-screen__button-row .get-ready-screen__ready-button {
+  all: unset;
+  cursor: pointer;
   height: 100px;
   width: 100px;
+}
+.get-ready-screen .get-ready-screen__button-row .get-ready-screen__ready-button svg path {
+  transition: all 0.2s ease-out;
+}
+.get-ready-screen .get-ready-screen__button-row .get-ready-screen__ready-button:hover svg path {
+  stroke: red;
+}
+.get-ready-screen .get-ready-screen__change-timer {
+  width: 350px;
+}
+.get-ready-screen .get-ready-screen__change-timer .col {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.get-ready-screen .get-ready-screen__change-timer .col button {
+  all: unset;
+  cursor: pointer;
+}
+.get-ready-screen .get-ready-screen__change-timer .col button svg path {
+  transition: all 0.2s ease-out;
+}
+.get-ready-screen .get-ready-screen__change-timer .col button:hover svg path {
+  stroke: red;
+}
+.get-ready-screen .get-ready-screen__change-timer .get-ready-screen__dec-time {
+  justify-content: end;
+}
+.get-ready-screen .get-ready-screen__change-timer .get-ready-screen__inc-time {
+  justify-content: start;
 }
 
 .typing-test-screen {
@@ -26,11 +89,45 @@ section {
   width: 100%;
   position: absolute;
   top: 15px;
+  font-size: 23px;
 }
-.typing-test-screen .typing-test__stats-row .typing-test__stats-col {
+.typing-test-screen .typing-test__stats-row .col-4 {
   display: flex;
   justify-content: center;
   text-align: center;
+}
+.typing-test-screen .typing-test__stats-row .typing-test__stats-accuracy {
+  font-size: 30px;
+}
+.typing-test-screen .typing-test__sentence {
+  max-width: 70vw;
+  font-size: 20px;
+}
+.typing-test-screen .typing-test__sentence .--typed-text {
+  color: rgba(128, 128, 128, 0.6);
+}
+.typing-test-screen .typing-test__sentence .--selected-char {
+  font-size: 22px;
+  font-weight: bold;
+  color: red;
+}
+
+.finish-screen .finish-screen__statistics {
+  margin: 40px 0 100px;
+}
+.finish-screen .finish-screen__statistics .finish-screen-statistics-item {
+  display: block;
+  font-size: 20px;
+}
+.finish-screen .finish-screen__button-restart {
+  all: unset;
+  cursor: pointer;
+}
+.finish-screen .finish-screen__button-restart svg path {
+  transition: all 0.2s ease-out;
+}
+.finish-screen .finish-screen__button-restart:hover svg path {
+  stroke: red;
 }
 
 /*# sourceMappingURL=index.css.map */
